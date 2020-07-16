@@ -11,7 +11,12 @@ h1 {
 }
 
 h2 {
-    color: #fff;
+    color: black;
+    text-align: center;
+    font-size: 32px;
+    font-weight: lighter;
+    padding-top: 8px;
+
 }
 
 
@@ -84,8 +89,6 @@ input[type="text"] {
     width: 313px;
 }
 
-
-
 input[type="text"]:focus {
     outline: none;
     box-shadow: inset 0 -3px 0 0 #A683E3;
@@ -111,13 +114,13 @@ footer {
     top: 0;
     left: 0;
     text-align: left;
-    
+
     overflow-x: hidden;
     padding-top: 0;
 }
 
 .sidenav a {
-    padding: 6px 6px 6px 6px;
+    padding: 12px 6px 6px 6px;
     text-decoration: none;
     font-size: 20px;
     color: black;
@@ -164,14 +167,14 @@ footer {
 }
 
 form.list {
-    margin-left:10px;
+    margin-left: 10px;
     display: flex;
     justify-content: space-evenly;
 
 }
 
 .plus-button {
-    margin:auto;
+    margin: auto;
     border: 0px solid lightgrey;
     background-color: #fff;
     font-size: 26px;
