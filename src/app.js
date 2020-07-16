@@ -6,6 +6,7 @@ const port = 3000;
 
 const publicDirectoryPath = path.join(__dirname, "../public");
 const viewsPath = path.join(__dirname, "../templates/views");
+
 app.set("view engine", "ejs");
 app.set("views", viewsPath);
 
