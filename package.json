@@ -1,0 +1,22 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Todo list from udemy course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/esszed/Todo-list-fs.git"
+  },
+  "author": "Štěpán Zoubek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/esszed/Todo-list-fs/issues"
+  },
+  "homepage": "https://github.com/esszed/Todo-list-fs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
