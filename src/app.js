@@ -15,8 +15,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicDirectoryPath));
 
 app.get("/", (req, res) => {
+  let today = new Date();
+
+  let options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  };
+let day = today.toLocaleDateString('en-UK', options)
   res.render("index", {
-    message: "Hello World",
+    day: day,
   });
 });
 
