@@ -14,8 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicDirectoryPath));
 
-
-let tasks=[]
+let tasks = [];
 
 app.get("/", (req, res) => {
   let today = new Date();
@@ -28,13 +27,13 @@ app.get("/", (req, res) => {
   let day = today.toLocaleDateString("en-UK", options);
   res.render("index", {
     day: day,
-    tasks:tasks
+    tasks: tasks,
   });
 });
 
 app.post("/addItem", (req, res) => {
-  tasks.push(req.body.newItem)
-  res.redirect('/')
+  tasks.push(req.body.newItem);
+  res.redirect("/");
 });
 
 app.listen(port, () => {
