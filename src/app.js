@@ -34,16 +34,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/addItem", (req, res) => {
-  tasks.push(req.body.newItem);
+  lists[currentTask].tasks.push(req.body.newItem);
   res.redirect("/");
 });
 
 app.post("/addList", (req, res) => {
   lists.push({ name: req.body.listName, tasks: [] });
-  console.log(lists);
   res.redirect("/");
 });
 
+app.get("/switch", (req, res) => {
+  currentTask = lists.findIndex((element) => element.name == req.query.name);
+  res.redirect("/");
+});
 app.listen(port, () => {
   console.log(`App is running on port:${port}`);
 });

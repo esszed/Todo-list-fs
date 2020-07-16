@@ -16,7 +16,7 @@
         <h1 id="listHeading">Lists</h1>
       </div>
       <%lists.forEach(list=>{ %>
-      <a href="#"><%= list.name %></a>
+      <a class="listLink" name="<%= list.name %>" href="#"><%= list.name %></a>
       <% }) %>
 
       <form class="list" action="/addList" method="POST">
@@ -50,4 +50,5 @@
       </form>
     </div>
   </body>
+  <script src="js/script.js"></script>
 </html>
