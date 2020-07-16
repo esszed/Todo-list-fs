@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicDirectoryPath));
 
 app.get("/", (req, res) => {
-  res.render('index', {
+  res.render("index", {
     message: "Hello World",
   });
 });
