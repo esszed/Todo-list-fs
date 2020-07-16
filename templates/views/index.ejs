@@ -7,9 +7,30 @@
     <title>To Do list</title>
   </head>
   <body>
-    <div class="box" id="heading">
-      <h1 id="heading"><%= day %></h1>
+    <div class="box heading">
+      <h1><%= listTitle %></h1>
     </div>
+
+    <div class="sidenav navbox">
+      <div class="heading">
+        <h1 id="listHeading">Lists</h1>
+      </div>
+      <%lists.forEach(list=>{ %>
+      <a href="#"><%= list.name %></a>
+      <% }) %>
+
+      <form class="list" action="/addList" method="POST">
+        <input
+          id="listInput"
+          type="text"
+          name="listName"
+          placeholder="New list"
+          autocomplete="off"
+        />
+        <input class="plus-button" type="submit" value="+" />
+      </form>
+    </div>
+
     <div class="box">
       <% tasks.forEach(task=>{ %>
       <div class="item">
@@ -18,8 +39,13 @@
       </div>
       <% }) %>
 
-      <form class="item" action="/addItem" method="POST">
-        <input type="text" name="newItem" id="" placeholder="New task" autocomplete="off" />
+      <form class="item task" action="/addItem" method="POST">
+        <input
+          type="text"
+          name="newItem"
+          placeholder="New task"
+          autocomplete="off"
+        />
         <button type="submit" name="button">+</button>
       </form>
     </div>

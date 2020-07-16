@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicDirectoryPath));
 
-let tasks = [];
-
+let lists = [{ name: "Important", tasks: ["Buy milk"] }];
+let currentTask = 0;
 app.get("/", (req, res) => {
   let today = new Date();
 
@@ -26,13 +26,21 @@ app.get("/", (req, res) => {
   };
   let day = today.toLocaleDateString("en-UK", options);
   res.render("index", {
-    day: day,
-    tasks: tasks,
+    listTitle: day,
+    lists: lists,
+    name: lists[currentTask].name,
+    tasks: lists[currentTask].tasks,
   });
 });
 
 app.post("/addItem", (req, res) => {
   tasks.push(req.body.newItem);
+  res.redirect("/");
+});
+
+app.post("/addList", (req, res) => {
+  lists.push({ name: req.body.listName, tasks: [] });
+  console.log(lists);
   res.redirect("/");
 });
 

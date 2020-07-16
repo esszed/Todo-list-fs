@@ -10,6 +10,11 @@ h1 {
     padding: 10px;
 }
 
+h2 {
+    color: #fff;
+}
+
+
 .box {
     max-width: 400px;
     margin: 50px auto;
@@ -18,7 +23,7 @@ h1 {
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 }
 
-#heading {
+.heading {
     background-color: #A683E3;
     text-align: center;
 }
@@ -51,7 +56,7 @@ p {
     color: #00204a;
 }
 
-form {
+form.task {
     text-align: center;
     margin-left: 20px;
 }
@@ -79,6 +84,8 @@ input[type="text"] {
     width: 313px;
 }
 
+
+
 input[type="text"]:focus {
     outline: none;
     box-shadow: inset 0 -3px 0 0 #A683E3;
@@ -93,4 +100,104 @@ footer {
     color: white;
     color: rgba(0, 0, 0, 0.5);
     text-align: center;
+}
+
+/* side navigation */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    text-align: left;
+    
+    overflow-x: hidden;
+    padding-top: 0;
+}
+
+.sidenav a {
+    padding: 6px 6px 6px 6px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    display: block;
+    text-align: center;
+}
+
+.sidenav a:hover {
+    color: grey;
+}
+
+.navbox {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 0px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+#listHeading {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-bottom: 10px;
+}
+
+#listInput {
+    text-align: left;
+    height: 60px;
+    margin-left: 0;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    font-weight: 200;
+    width: 100%;
+}
+
+form.list {
+    margin-left:10px;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.plus-button {
+    margin:auto;
+    border: 0px solid lightgrey;
+    background-color: #fff;
+    font-size: 26px;
+    height: 2.5em;
+    width: 2.5em;
+    border-radius: 999px;
+    position: relative;
+}
+
+.plus-button:after,
+.plus-button:before {
+    content: "";
+    display: block;
+    background-color: grey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.plus-button:before {
+    height: 1em;
+    width: 0.2em;
+}
+
+.plus-button:after {
+    height: 0.2em;
+    width: 1em;
 }
