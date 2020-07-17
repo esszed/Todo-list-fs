@@ -222,3 +222,6 @@ color:lightgray;
     margin:15px 0 0 6px;
     
 }
+.current{
+    font-weight: bold;
+}

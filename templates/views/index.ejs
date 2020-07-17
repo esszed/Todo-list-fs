@@ -23,9 +23,12 @@
       </div>
       <%lists.forEach(list=>{ %>
       <div class="listName">
-        <a class="listLink" name="<%= list.name %>" href="#"
-          ><%= list.name %></a
-        >
+       <% if(list.name==name){ %>
+          <a class="listLink current" name="<%= list.name %>" href="#"><%= list.name %></a>
+      <%  }else{ %>
+          <a class="listLink " name="<%= list.name %>" href="#"><%= list.name %></a>
+      <%  } %>
+        
         <a class="deleteListLink" name="<%= list.name %>" href="#"
           ><i class="far fa-times-circle"></i
         ></a>

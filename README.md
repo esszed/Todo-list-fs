@@ -1,8 +1,9 @@
-# Todo-list-fs
-Todo list from fullstack dev course with some extra functionality
+# Todo-list-fs v1
+Version one of Todo list project from fullstack dev course with some extra functionality
 
-There is no database implemented
+Works on single page with ability to add and remove lists
 
-Sidenav not responsive
+There is no database implemented in v1
+
 
 App can be started by running npm run dev script in console
