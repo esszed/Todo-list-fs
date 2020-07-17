@@ -13,14 +13,14 @@ for (let i = 0; i < links.length; i++) {
 }
 
 const deleteLinks = document.querySelectorAll(".deleteListLink");
-for (let i = 0; i<links.length;i++){
-  deleteLinks[i].addEventListener("click",e=>{
-    fetch(`/delete?name=${deleteLinks[i].name}`).then((response) => {
+for (let i = 0; i < links.length; i++) {
+  deleteLinks[i].addEventListener("click", (e) => {
+    fetch(`/deletelist?name=${deleteLinks[i].name}`).then((response) => {
       if (response.ok) {
         window.location.href = "/";
         return;
       }
       throw new Error("Request failed.");
     });
-  })
+  });
 }

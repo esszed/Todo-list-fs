@@ -18,18 +18,26 @@ let lists = [{ name: "Important", tasks: ["Buy milk"] }];
 let currentTask = 0;
 app.get("/", (req, res) => {
   let today = new Date();
-
   let options = {
     weekday: "long",
     day: "numeric",
     month: "long",
   };
   let day = today.toLocaleDateString("en-UK", options);
+  let listName;
+  let tasks;
+  if (lists.length==0) {
+    listName = "";
+    tasks = [];
+  } else {
+    listName = lists[currentTask].name;
+    tasks = lists[currentTask].tasks;
+  }
   res.render("index", {
     listTitle: day,
     lists: lists,
-    name: lists[currentTask].name,
-    tasks: lists[currentTask].tasks,
+    name: listName,
+    tasks: tasks,
   });
 });
 
@@ -48,7 +56,7 @@ app.get("/switch", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/delete", (req, res) => {
+app.get("/deletelist", (req, res) => {
   let deleteList = lists.findIndex((element) => element.name == req.query.name);
   if (deleteList == currentTask) {
     currentTask = 0;

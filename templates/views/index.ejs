@@ -23,8 +23,12 @@
       </div>
       <%lists.forEach(list=>{ %>
       <div class="listName">
-        <a class="listLink" name="<%= list.name %>" href="#"><%= list.name %></a>
-        <a class="deleteListLink"name="<%= list.name %>" href="#"><i class="far fa-times-circle"></i></a>
+        <a class="listLink" name="<%= list.name %>" href="#"
+          ><%= list.name %></a
+        >
+        <a class="deleteListLink" name="<%= list.name %>" href="#"
+          ><i class="far fa-times-circle"></i
+        ></a>
       </div>
       <% }) %>
 
@@ -35,6 +39,7 @@
           name="listName"
           placeholder="New list"
           autocomplete="off"
+          required="true"
         />
         <input class="plus-button" type="submit" value="+" />
       </form>
@@ -51,6 +56,13 @@
       <% }) %>
 
       <form class="item task" action="/addItem" method="POST">
+        <% if(name==""){ %>
+        <input
+          type="text"
+          placeholder="Start by adding new list"
+          disabled="true"
+        />
+        <% } else{ %>
         <input
           type="text"
           name="newItem"
@@ -58,6 +70,7 @@
           autocomplete="off"
         />
         <button type="submit" name="button">+</button>
+        <% } %>
       </form>
     </div>
     <%- include('footer'); -%>
