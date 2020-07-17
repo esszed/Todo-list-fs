@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style/style.css" />
     <title>To Do list</title>
   </head>
@@ -10,13 +16,16 @@
     <div class="box heading">
       <h1><%= listTitle %></h1>
     </div>
-    
+
     <div class="sidenav navbox">
       <div class="heading">
         <h1 id="listHeading">Lists</h1>
       </div>
       <%lists.forEach(list=>{ %>
-      <a class="listLink" name="<%= list.name %>" href="#"><%= list.name %></a>
+      <div class="listName">
+        <a class="listLink" name="<%= list.name %>" href="#"><%= list.name %></a>
+        <a class="deleteListLink"name="<%= list.name %>" href="#"><i class="far fa-times-circle"></i></a>
+      </div>
       <% }) %>
 
       <form class="list" action="/addList" method="POST">
@@ -32,10 +41,8 @@
     </div>
 
     <div class="box">
-     
-        <h2><%= name %></h2>
-       
-      
+      <h2><%= name %></h2>
+
       <% tasks.forEach(task=>{ %>
       <div class="item">
         <input type="checkbox" name="" id="" />
@@ -53,7 +60,7 @@
         <button type="submit" name="button">+</button>
       </form>
     </div>
-    <%- include('footer'); -%> 
+    <%- include('footer'); -%>
   </body>
   <script src="js/script.js"></script>
 </html>

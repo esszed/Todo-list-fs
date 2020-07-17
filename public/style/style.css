@@ -124,12 +124,12 @@ footer {
     text-decoration: none;
     font-size: 20px;
     color: black;
-    display: block;
-    text-align: center;
+   
 }
 
 .sidenav a:hover {
     color: grey;
+    
 }
 
 .navbox {
@@ -203,4 +203,22 @@ form.list {
 .plus-button:after {
     height: 0.2em;
     width: 1em;
+}
+
+
+.far{
+float: right;
+margin-right: 10px;
+color:lightgray;
+}
+
+.far:hover{
+    color:gray;
+}
+
+.listName{
+    
+    
+    margin:15px 0 0 6px;
+    
 }

@@ -47,6 +47,16 @@ app.get("/switch", (req, res) => {
   currentTask = lists.findIndex((element) => element.name == req.query.name);
   res.redirect("/");
 });
+
+app.get("/delete", (req, res) => {
+  let deleteList = lists.findIndex((element) => element.name == req.query.name);
+  if (deleteList == currentTask) {
+    currentTask = 0;
+  }
+  lists.splice(deleteList, 1);
+  res.redirect("/");
+});
+
 app.listen(port, () => {
   console.log(`App is running on port:${port}`);
 });
