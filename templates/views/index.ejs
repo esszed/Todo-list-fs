@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="box heading">
-      <h1><%= listTitle %></h1>
+      <h1><%= day %></h1>
     </div>
 
     <div class="sidenav navbox">
@@ -23,13 +23,13 @@
       </div>
       <%lists.forEach(list=>{ %>
       <div class="listName">
-       <% if(list.name==name){ %>
-          <a class="listLink current" name="<%= list.name %>" href="#"><%= list.name %></a>
+       <% if(list._id==currentList._id){ %>
+          <a class="listLink current" name="<%= list._id %>" href="#"><%= list.name %></a>
       <%  }else{ %>
-          <a class="listLink " name="<%= list.name %>" href="#"><%= list.name %></a>
+          <a class="listLink " name="<%= list._id %>" href="#"><%= list.name %></a>
       <%  } %>
         
-        <a class="deleteListLink" name="<%= list.name %>" href="#"
+        <a class="deleteListLink" name="<%= list._id %>" href="#"
           ><i class="far fa-times-circle"></i
         ></a>
       </div>
@@ -49,9 +49,9 @@
     </div>
 
     <div class="box">
-      <h2><%= name %></h2>
+      <h2><%= currentList.name %></h2>
 
-      <% tasks.forEach(task=>{ %>
+      <% currentList.items.forEach(task=>{ %>
       <div class="item">
         <input type="checkbox" name="" id="" />
         <p><%= task %></p>
@@ -59,7 +59,7 @@
       <% }) %>
 
       <form class="item task" action="/addItem" method="POST">
-        <% if(name==""){ %>
+        <% if(currentList.name==""){ %>
         <input
           type="text"
           placeholder="Start by adding new list"
