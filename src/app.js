@@ -72,7 +72,8 @@ app.get('/', (req, res) => {
 app.post('/addItem', (req, res) => {
   List.find({}, (err, lists) => {
     const item = new Item({
-      name: req.body.newItem
+      name: req.body.newItem,
+      checked: false
     })
     item.save()
     lists[currentNumber].items.push(item)
@@ -135,6 +136,19 @@ app.get('/deletetask', (req, res) => {
         })
       }
     )
+  })
+})
+
+app.get('/check', (req, res) => {
+  List.find({}, (err, lists) => {
+    currentList = lists[currentNumber]
+    let index = currentList.items.findIndex(
+      element => element._id == req.query.id
+    )
+    let item = currentList.items[index]
+    item.checked = !item.checked
+    currentList.save()
+    res.redirect('/')
   })
 })
 

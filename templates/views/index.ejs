@@ -53,8 +53,8 @@
 
       <% currentList.items.forEach(task=>{ %>
       <div class="item">
-        <input type="checkbox" name="<%=task._id%>" id="" />
-        <p><%= task.name %>  </p>
+        <input class="checkbox" type="checkbox" name="<%=task._id%>" id="" />
+        <p class="<%= task.checked ? 'checked' : '' %> "><%= task.name %>  </p>
         <a class="deleteTaskLink" name="<%=task._id%>" href="#"
           ><i class="far fa-times-circle"></i
         ></a>

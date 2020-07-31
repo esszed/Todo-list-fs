@@ -37,3 +37,16 @@ for (let i = 0; i < deleteTaskLinks.length; i++) {
     });
   });
 }
+
+const checkbox = document.querySelectorAll(".checkbox");
+for (let i = 0; i < checkbox.length; i++) {
+  checkbox[i].addEventListener("click", (e) => {
+    fetch(`/check?id=${checkbox[i].name}`).then((response) => {
+      if (response.ok) {
+        window.location.href = "/";
+        return;
+      }
+      throw new Error("Request failed.");
+    });
+  });
+}
