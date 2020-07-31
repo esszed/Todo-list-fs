@@ -6,7 +6,7 @@ Build with node and mongoDB
 Extra functionality: 
 - adding, removing and switching betwen lists
 - crossing tasks without deleting them
-- Works on single page
+- works on single page
 
 
 ![Screenshot_20200801_002934](https://user-images.githubusercontent.com/56234798/89082386-26eb6800-d38e-11ea-9244-c696503eecb4.png)
