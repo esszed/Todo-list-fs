@@ -28,6 +28,8 @@ mongoose.connect('mongodb://localhost:27017/todolistDB', {
   useFindAndModify: false
 })
 
+//schemas
+
 const listsSchema = {
   name: String,
   items: []
@@ -40,6 +42,8 @@ const itemsSchema = {
 
 const Item = mongoose.model('Item', itemsSchema)
 
+//app
+
 let currentNumber = 0
 app.get('/', (req, res) => {
   let today = new Date()
@@ -51,9 +55,7 @@ app.get('/', (req, res) => {
   let day = today.toLocaleDateString('en-UK', options)
 
   List.find({}, (err, lists) => {
-    let listName
-    let tasks
-    if (lists.length == 0) {
+    if (lists.length === 0) {
       currentList = { name: '', items: [] }
     } else {
       currentList = lists[currentNumber]
@@ -67,7 +69,15 @@ app.get('/', (req, res) => {
 })
 
 app.post('/addItem', (req, res) => {
-  lists[currentNumber].tasks.push(req.body.newItem)
+  List.find({}, (err, lists) => {
+    const item = new Item({
+      name: req.body.newItem
+    })
+    item.save()
+    lists[currentNumber].items.push(item)
+    lists[currentNumber].save()
+  })
+
   res.redirect('/')
 })
 
