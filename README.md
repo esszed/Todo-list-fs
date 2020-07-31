@@ -1,9 +1,15 @@
-# Todo-list-fs v1
-Version one of Todo list project from fullstack dev course with some extra functionality
+# Todo-list-fs v2
+Version Two of Todo list project from fullstack dev course with some extra functionality. 
 
-Works on single page with ability to add and remove lists
+Build with node and mongoDB
 
-There is no database implemented in v1
+Extra functionality: 
+- adding, removing and switching betwen lists
+- crossing tasks without deleting them
+- Works on single page
+
+
+
 
 
 App can be started by running npm run dev script in console
