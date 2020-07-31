@@ -12,10 +12,23 @@ for (let i = 0; i < links.length; i++) {
   });
 }
 
-const deleteLinks = document.querySelectorAll(".deleteListLink");
-for (let i = 0; i < links.length; i++) {
-  deleteLinks[i].addEventListener("click", (e) => {
-    fetch(`/deletelist?id=${deleteLinks[i].name}`).then((response) => {
+const deleteListLinks = document.querySelectorAll(".deleteListLink");
+for (let i = 0; i < deleteListLinks.length; i++) {
+  deleteListLinks[i].addEventListener("click", (e) => {
+    fetch(`/deletelist?id=${deleteListLinks[i].name}`).then((response) => {
+      if (response.ok) {
+        window.location.href = "/";
+        return;
+      }
+      throw new Error("Request failed.");
+    });
+  });
+}
+
+const deleteTaskLinks = document.querySelectorAll(".deleteTaskLink");
+for (let i = 0; i < deleteTaskLinks.length; i++) {
+  deleteTaskLinks[i].addEventListener("click", (e) => {
+    fetch(`/deletetask?id=${deleteTaskLinks[i].name}`).then((response) => {
       if (response.ok) {
         window.location.href = "/";
         return;

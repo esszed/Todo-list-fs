@@ -30,17 +30,18 @@ mongoose.connect('mongodb://localhost:27017/todolistDB', {
 
 //schemas
 
-const listsSchema = {
-  name: String,
-  items: []
-}
-const List = mongoose.model('List', listsSchema)
-
 const itemsSchema = {
-  name: String
+  name: String,
+  checked: Boolean
 }
 
 const Item = mongoose.model('Item', itemsSchema)
+
+const listsSchema = {
+  name: String,
+  items: [itemsSchema]
+}
+const List = mongoose.model('List', listsSchema)
 
 //app
 
@@ -112,6 +113,29 @@ app.get('/deletelist', (req, res) => {
   })
 
   res.redirect('/')
+})
+
+app.get('/deletetask', (req, res) => {
+  let currentId
+  List.find({}, (err, lists) => {
+    currentId = lists[currentNumber]._id
+
+    List.findOneAndUpdate(
+      { _id: currentId },
+      { $pull: { items: { _id: req.query.id } } },
+      err => {
+        if (err) {
+          console.log(err)
+        }
+        Item.findByIdAndDelete({ _id: req.query.id }, err => {
+          if (err) {
+            console.log(err)
+          }
+          res.redirect('/')
+        })
+      }
+    )
+  })
 })
 
 app.listen(port, () => {
