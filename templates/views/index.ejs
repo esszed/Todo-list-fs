@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
-      integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style/style.css" />
-    <title>To Do list</title>
-  </head>
-  <body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
+    integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style/style.css" />
+  <title>To Do list</title>
+</head>
+
+<body>
+  <div class="sidenav navbox">
+    <div class="heading">
+      <h1 id="listHeading">Lists</h1>
+    </div>
+    <%lists.forEach(list=>{ %>
+    <div class="listName">
+      <% if(list._id==currentList._id){ %>
+      <a class="listLink current" name="<%= list._id %>" href="#"><%= list.name %></a>
+      <%  }else{ %>
+      <a class="listLink " name="<%= list._id %>" href="#"><%= list.name %></a>
+      <%  } %>
+
+      <a class="deleteListLink" name="<%= list._id %>" href="#"><i class="far fa-times-circle"></i></a>
+    </div>
+    <% }) %>
+
+    <form class="list" action="/addList" method="POST">
+      <input id="listInput" type="text" name="listName" placeholder="New list" autocomplete="off" required="true" />
+      <input class="plus-button" type="submit" value="+" />
+    </form>
+  </div>
+  <div class="overlay"></div>
+    <div class="hamburger">
+      <i class="fas fa-bars fa-2x"></i>
+    </div>
+
     <div class="box heading">
       <h1><%= day %></h1>
     </div>
 
-    <div class="sidenav navbox">
-      <div class="heading">
-        <h1 id="listHeading">Lists</h1>
-      </div>
-      <%lists.forEach(list=>{ %>
-      <div class="listName">
-       <% if(list._id==currentList._id){ %>
-          <a class="listLink current" name="<%= list._id %>" href="#"><%= list.name %></a>
-      <%  }else{ %>
-          <a class="listLink " name="<%= list._id %>" href="#"><%= list.name %></a>
-      <%  } %>
-        
-        <a class="deleteListLink" name="<%= list._id %>" href="#"
-          ><i class="far fa-times-circle"></i
-        ></a>
-      </div>
-      <% }) %>
 
-      <form class="list" action="/addList" method="POST">
-        <input
-          id="listInput"
-          type="text"
-          name="listName"
-          placeholder="New list"
-          autocomplete="off"
-          required="true"
-        />
-        <input class="plus-button" type="submit" value="+" />
-      </form>
-    </div>
 
     <div class="box">
       <h2><%= currentList.name %></h2>
@@ -54,32 +49,23 @@
       <% currentList.items.forEach(task=>{ %>
       <div class="item">
         <input class="checkbox" type="checkbox" name="<%=task._id%>" id="" />
-        <p class="<%= task.checked ? 'checked' : '' %> "><%= task.name %>  </p>
-        <a class="deleteTaskLink" name="<%=task._id%>" href="#"
-          ><i class="far fa-times-circle"></i
-        ></a>
+        <p class="<%= task.checked ? 'checked' : '' %> "><%= task.name %> </p>
+        <a class="deleteTaskLink" name="<%=task._id%>" href="#"><i class="far fa-times-circle"></i></a>
       </div>
       <% }) %>
 
       <form class="item task" action="/addItem" method="POST">
         <% if(currentList.name==""){ %>
-        <input
-          type="text"
-          placeholder="Start by adding new list"
-          disabled="true"
-        />
+        <input type="text" placeholder="Start by adding new list" disabled="true" />
         <% } else{ %>
-        <input
-          type="text"
-          name="newItem"
-          placeholder="New task"
-          autocomplete="off"
-        />
+        <input type="text" name="newItem" placeholder="New task" autocomplete="off" />
         <button type="submit" name="button">+</button>
         <% } %>
       </form>
     </div>
     <%- include('footer'); -%>
-  </body>
-  <script src="js/script.js"></script>
+  
+</body>
+<script src="js/script.js"></script>
+
 </html>

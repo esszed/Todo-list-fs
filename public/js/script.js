@@ -50,3 +50,19 @@ for (let i = 0; i < checkbox.length; i++) {
     });
   });
 }
+
+
+
+let hamburger = document.querySelector('.hamburger')
+let sideNav = document.querySelector('.sidenav')
+let overlay = document.querySelector('.overlay')
+hamburger.addEventListener('click', ()=>{
+  overlay.classList.add('blur')
+  sideNav.style.width = "250px";
+})
+
+
+overlay.addEventListener('click', ()=>{
+  sideNav.style.width = "0px";
+  overlay.classList.remove('blur')
+})
