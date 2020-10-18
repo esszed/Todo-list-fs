@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(publicDirectoryPath))
 
-//database coonnect
+//database coonnect mongodb://localhost:27017/todolistDB
 mongoose.connect('mongodb://localhost:27017/todolistDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -46,7 +46,7 @@ const List = mongoose.model('List', listsSchema)
 //app
 
 let currentNumber = 0
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   let today = new Date()
   const options = {
     weekday: 'long',
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
   }
   let day = today.toLocaleDateString('en-UK', options)
 
-  List.find({}, (err, lists) => {
+  await List.find({}, (err, lists) => {
     if (lists.length === 0) {
       currentList = { name: '', items: [] }
     } else {
@@ -69,8 +69,8 @@ app.get('/', (req, res) => {
   })
 })
 
-app.post('/addItem', (req, res) => {
-  List.find({}, (err, lists) => {
+app.post('/addItem', async (req, res) => {
+  await List.find({}, (err, lists) => {
     const item = new Item({
       name: req.body.newItem,
       checked: false
@@ -92,22 +92,24 @@ app.post('/addList', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/switch', (req, res) => {
-  List.find({}, (err, lists) => {
+app.get('/switch', async (req, res) => {
+  await List.find({}, (err, lists) => {
     currentNumber = lists.findIndex(element => element._id == req.query.id)
     res.redirect('/')
   })
 })
 
-app.get('/deletelist', (req, res) => {
-  List.find({}, (err, lists) => {
+app.get('/deletelist', async (req, res) => {
+  await List.find({}, (err, lists) => {
     let index = lists.findIndex(element => element._id == req.query.id)
     if (currentNumber === index) {
       currentNumber = 0
+    } else {
+      currentNumber = currentNumber - 1
     }
   })
 
-  List.findByIdAndRemove({ _id: req.query.id }, err => {
+  await List.findByIdAndRemove({ _id: req.query.id }, err => {
     if (err) {
       console.log(err)
     }
@@ -116,9 +118,9 @@ app.get('/deletelist', (req, res) => {
   res.redirect('/')
 })
 
-app.get('/deletetask', (req, res) => {
+app.get('/deletetask', async (req, res) => {
   let currentId
-  List.find({}, (err, lists) => {
+  await List.find({}, (err, lists) => {
     currentId = lists[currentNumber]._id
 
     List.findOneAndUpdate(
@@ -139,8 +141,8 @@ app.get('/deletetask', (req, res) => {
   })
 })
 
-app.get('/check', (req, res) => {
-  List.find({}, (err, lists) => {
+app.get('/check', async (req, res) => {
+  await List.find({}, (err, lists) => {
     currentList = lists[currentNumber]
     let index = currentList.items.findIndex(
       element => element._id == req.query.id

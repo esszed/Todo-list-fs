@@ -17,6 +17,7 @@
     </div>
     <%lists.forEach(list=>{ %>
     <div class="listName">
+
       <% if(list._id==currentList._id){ %>
       <a class="listLink current" name="<%= list._id %>" href="#"><%= list.name %></a>
       <%  }else{ %>
