@@ -2,6 +2,7 @@
 Version Two of Todo list project from fullstack dev course with some extra functionality. 
 
 Demo link: https://todo-zoubek.herokuapp.com
+
 Build with node and mongoDB
 
 Extra functionality: 
