@@ -1,7 +1,7 @@
 # Todo-list-fs v2
 Version Two of Todo list project from fullstack dev course with some extra functionality. 
 
-Demo link: https://enigmatic-cliffs-20853.herokuapp.com 
+Demo link: todo-zoubek.herokuapp.com
 
 Build with node and mongoDB
 
